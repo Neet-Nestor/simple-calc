@@ -27,26 +27,40 @@ var response = readLine(strippingNewline: true)!
 if (response.lowercased().hasSuffix("count")) {  // operation "count": count the number of input
     let numbersArr = response.components(separatedBy: " ")
     var count:Int = 0;
-    for i in 0...(numbersArr.count - 1) {
+    var wrong = false
+    for i in 0...(numbersArr.count - 2) {
         let num = numbersArr[i]
         if (isNum(str: num)) {   // if this String is a number
             count += 1
+        } else {
+            print("Illegal input")
+            wrong = true
+            break
         }
     }
-    print("result: \(count)")
+    if (!wrong) {
+        print("result: \(count)")
+    }
 } else if (response.lowercased().hasSuffix("avg")) {    // operation "avg": average all the inputs
     let numbersArr = response.components(separatedBy: " ")
     var sum:Double = 0.0;
     var count = 0
-    for i in 0...(numbersArr.count - 1) {
+    var wrong = false
+    for i in 0...(numbersArr.count - 2) {
         let num = numbersArr[i]
         if (isNum(str: num)) {  // if this String is a number
             sum += Double(num)!
             count += 1
+        } else {
+            wrong = true
+            print("Illegal input")
+            break
         }
     }
-    let result = sum / Double(count)
-    print("result: \(result)")
+    if (!wrong) {
+        let result = sum / Double(count)
+        print("result: \(result)")
+    }
 } else if (response.lowercased().hasSuffix("fact")) {   // operation "fact": calculate factorial
     let numbersArr = response.components(separatedBy: " ")
     if (numbersArr.count > 2 || !isPositiveInt(str: numbersArr[0])) {
