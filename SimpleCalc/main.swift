@@ -12,7 +12,7 @@ import Foundation
 
 // returns if a String represents a number
 func isNum(str:String) -> Bool {
-    return str.range(of: "^-?[0-9]+(.[0-9]+)?$", options: .regularExpression) != nil
+    return str.range(of: "^-?[0-9]+([\\.][0-9]+)?$", options: .regularExpression) != nil
 }
 
 // returns if a String only contains a positive number
